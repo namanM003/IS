@@ -1,0 +1,294 @@
+\documentclass[11pt]{article}
+
+\usepackage{epsfig}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsmath}
+\usepackage{xspace}
+\usepackage{theorem}
+\usepackage{times}
+\usepackage{graphicx}
+
+%\usepackage{layout}% if you want to see the layout parameters
+                     % and now use \layout command in the body
+
+% This is the stuff for normal spacing
+\makeatletter
+ \setlength{\textwidth}{6.5in}
+ \setlength{\oddsidemargin}{0in}
+ \setlength{\evensidemargin}{0in}
+ \setlength{\topmargin}{0.25in}
+ \setlength{\textheight}{8.25in}
+ \setlength{\headheight}{0pt}
+ \setlength{\headsep}{0pt}
+ \setlength{\marginparwidth}{59pt}
+
+ \setlength{\parindent}{0pt}
+ \setlength{\parskip}{5pt plus 1pt}
+ \setlength{\theorempreskipamount}{5pt plus 1pt}
+ \setlength{\theorempostskipamount}{0pt}
+ \setlength{\abovedisplayskip}{8pt plus 3pt minus 6pt}
+
+ \renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                   {2ex plus -1ex minus -.2ex}%
+                                   {1.3ex plus .2ex}%
+                                   {\normalfont\Large\bfseries}}%
+ \renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                     {1ex plus -1ex minus -.2ex}%
+                                     {1ex plus .2ex}%
+                                     {\normalfont\large\bfseries}}%
+ \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                     {1ex plus -1ex minus -.2ex}%
+                                     {1ex plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+ \renewcommand{\paragraph}{\@startsection{paragraph}{4}{0mm}%
+                                    {1ex \@plus1ex \@minus.2ex}%
+                                    {-1em}%
+                                    {\normalfont\normalsize\bfseries}}
+ \renewcommand{\subparagraph}{\@startsection{subparagraph}{5}{\parindent}%
+                                       {2.0ex \@plus1ex \@minus .2ex}%
+                                       {-1em}%
+                                      {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\newenvironment{proof}{{\bf Proof:  }}{\hfill\rule{2mm}{2mm}}
+\newenvironment{proofof}[1]{{\bf Proof of #1:  }}{\hfill\rule{2mm}{2mm}}
+\newenvironment{proofofnobox}[1]{{\bf#1:  }}{}
+\newenvironment{example}{{\bf Example:  }}{\hfill\rule{2mm}{2mm}}
+\renewcommand{\thesection}{\lecnum.\arabic{section}}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+
+\newtheorem{fact}{Fact}[section]
+\newtheorem{lemma}[fact]{Lemma}
+\newtheorem{theorem}[fact]{Theorem}
+\newtheorem{definition}[fact]{Definition}
+\newtheorem{corollary}[fact]{Corollary}
+\newtheorem{proposition}[fact]{Proposition}
+\newtheorem{claim}[fact]{Claim}
+\newtheorem{exercise}[fact]{Exercise}
+
+% math notations
+\newcommand{\R}{\ensuremath{\mathbb R}}
+\newcommand{\Z}{\ensuremath{\mathbb Z}}
+\newcommand{\N}{\ensuremath{\mathbb N}}
+\newcommand{\F}{\ensuremath{\mathcal F}}
+\newcommand{\SymGrp}{\ensuremath{\mathfrak S}}
+
+\newcommand{\size}[1]{\ensuremath{\left|#1\right|}}
+\newcommand{\ceil}[1]{\ensuremath{\left\lceil#1\right\rceil}}
+\newcommand{\floor}[1]{\ensuremath{\left\lfloor#1\right\rfloor}}
+\newcommand{\poly}{\operatorname{poly}}
+\newcommand{\polylog}{\operatorname{polylog}}
+
+% asymptotic notations
+\newcommand{\Oh}[1]{{\mathcal O}\left({#1}\right)}
+\newcommand{\LOh}[1]{{\mathcal O}\left({#1}\right.}
+\newcommand{\ROh}[1]{{\mathcal O}\left.{#1}\right)}
+\newcommand{\oh}[1]{{o}\left({#1}\right)}
+\newcommand{\Om}[1]{{\Omega}\left({#1}\right)}
+\newcommand{\om}[1]{{\omega}\left({#1}\right)}
+\newcommand{\Th}[1]{{\Theta}\left({#1}\right)}
+
+
+% pseudocode notations
+\newcommand{\xif}{{\bf{\em{if~}}}}
+\newcommand{\xthen}{{\bf{\em{then~}}}}
+\newcommand{\xelse}{{\bf{\em{else~}}}}
+\newcommand{\xelseif}{{\bf{\em{elif~}}}}
+\newcommand{\xfi}{{\bf{\em{fi~}}}}
+\newcommand{\xcase}{{\bf{\em{case~}}}}
+\newcommand{\xendcase}{{\bf{\em{endcase~}}}}
+\newcommand{\xfor}{{\bf{\em{for~}}}}
+\newcommand{\xto}{{\bf{\em{to~}}}}
+\newcommand{\xby}{{\bf{\em{by~}}}}
+\newcommand{\xdownto}{{\bf{\em{downto~}}}}
+\newcommand{\xdo}{{\bf{\em{do~}}}}
+\newcommand{\xrof}{{\bf{\em{rof~}}}}
+\newcommand{\xwhile}{{\bf{\em{while~}}}}
+\newcommand{\xendwhile}{{\bf{\em{endwhile~}}}}
+\newcommand{\xand}{{\bf{\em{and~}}}}
+\newcommand{\xor}{{\bf{\em{or~}}}}
+\newcommand{\xerror}{{\bf{\em{error~}}}}
+\newcommand{\xreturn}{{\bf{\em{return~}}}}
+\newcommand{\xparallel}{{\bf{\em{parallel~}}}}
+\newcommand{\T}{\hspace{0.5cm}}
+\newcommand{\m}{\mathcal}
+
+\def\sland{~\land~}
+\def\slor{~\lor~}
+\def\sRightarrow{~\Rightarrow~}
+
+\def\comment#1{\hfill{$\left\{\textrm{{\em{#1}}}\right\}$}}
+\def\lcomment#1{\hfill{$\left\{\textrm{{\em{#1}}}\right.$}}
+\def\rcomment#1{\hfill{$\left.\textrm{{\em{#1}}}\right\}$}}
+\def\fcomment#1{\hfill{$\textrm{{\em{#1}}}$}}
+\def\func#1{\textrm{\bf{\sc{#1}}}}
+\def\funcbf#1{\textrm{\textbf{\textsc{#1}}}}
+
+\newcommand{\hide}[1]{}
+
+\newcommand{\prob}[1]{\ensuremath{\text{{\bf Pr}$\left[#1\right]$}}}
+\newcommand{\expct}[1]{\ensuremath{\text{{\bf E}$\left[#1\right]$}}}
+\newcommand{\Event}{{\mathcal E}}
+
+\newcommand{\mnote}[1]{\normalmarginpar \marginpar{\tiny #1}}
+
+\makeatletter
+   \newcommand\figcaption{\def\@captype{figure}\caption}
+   \newcommand\tabcaption{\def\@captype{table}\caption}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document begins here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\headings}[4]{
+{\bf CSE548 \& AMS542: Analysis of Algorithms, Spring 2015} \hfill {{\bf Lecturer:} #1}\\
+{{\bf Topic:} #2} \hfill {{\bf Date:} #3} \\
+{{\bf Scribe:} #4}\\
+\rule[0.1in]{\textwidth}{0.025in}
+%\thispagestyle{empty}
+}
+
+\begin{document}
+
+\headings{Prof. Rezaul Chowdhary}{Deriving Strassen's Algorithm \& Polynomial Multiplication}{5 February, 2015}{Naman Mittal}
+\newcommand{\lecnum}{3}  % Lecture Number
+
+\section{Deriving Strassen's Algorithm}
+
+Suppose we are given two matrix X \& Y and we will compute Z which is multiplication of X \& Y.
+
+\begin{center}$\begin{bmatrix} a & b \\ c & d \end{bmatrix} \times \begin{bmatrix}e & f \\ g & h \end{bmatrix} = \begin{bmatrix} p & q \\ r & s \end{bmatrix}$\end{center}
+
+This can also be rewritten as:
+
+\begin{center}$\begin{bmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\ 0 & 0 & a & b \\ 0 & 0 & c & d \end{bmatrix} \times \begin{bmatrix} e \\ f \\ g \\ h \end{bmatrix}= \begin{bmatrix} p \\ q \\ r \\ s \end{bmatrix}$\end{center}
+
+Now, we will try to minimize the no of multiplications needed to calculate Z and for minimizing number of multiplications we will use some special matrix products.
+
+\begin{center}\begin{tabular}{c|c|c}Type & Product & No. of Multiplications\\
+\hline
+\\ ($\cdot$) & $\begin{bmatrix} a & b \\ c & d \end{bmatrix}\begin{bmatrix}e \\ g \end{bmatrix} = \begin{bmatrix} ae & bg \\ ce & dg \end{bmatrix}$ & 4 \\\\
+(A) & $\begin{bmatrix} a & a \\ a & a \end{bmatrix}\begin{bmatrix}e \\ g \end{bmatrix} = \begin{bmatrix} a(e+g) \\ a(e+g) \end{bmatrix}$ & 1 \\\\ (B) & $\begin{bmatrix} a & a \\ -a & -a \end{bmatrix}\begin{bmatrix}e \\ g \end{bmatrix} = \begin{bmatrix} a(e+g) \\ -a(e+g) \end{bmatrix}$ & 1\\\\(C) & $\begin{bmatrix} a & 0 \\ a-b & b \end{bmatrix}\begin{bmatrix}e \\ g \end{bmatrix} = \begin{bmatrix} ae \\ ae+b(g-e) \end{bmatrix}$ & 2 \\\\(D) & $\begin{bmatrix} a & b-a \\ 0 & b \end{bmatrix}\begin{bmatrix}e \\ g \end{bmatrix} = \begin{bmatrix} a(e-g)+bf \\ bf \end{bmatrix}$ & 2\end{tabular}\end{center}
+
+
+Now we will try to transform matrix X such that when we multiply it with matrix Y we need to do minimum no of multiplications to get Z.
+
+\begin{center}$\begin{array}{ccc}\begin{bmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\ 0 & 0 & a & b \\ 0 & 0 & c & d \end{bmatrix}= &\begin{bmatrix} b & b & 0 & 0 \\b & b & 0 & 0\\0 & 0 & 0 & 0\\ 0 & 0 & 0 & 0 \end{bmatrix} & \begin{bmatrix} a-b & 0 & 0 & 0 \\ c-b & d-b & 0 &0\\ 0 & 0 & a & b \\ 0 & 0 & c & d\end{bmatrix}\\& Type (A) & \Delta_1\end{array}$\end{center}
+
+\begin{center}$\begin{array}{ccc}\Delta_1= &\begin{bmatrix} 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0\\0 & 0 & c & c\\ 0 & 0 & c & c \end{bmatrix} & \begin{bmatrix} a-b & 0 & 0 & 0 \\ c-b & d-b & 0 &0\\ 0 & 0 & a-c & b-c \\ 0 & 0 & 0 & d-c\end{bmatrix}\\& Type (A) & \Delta_2\end{array}$\end{center}
+
+\begin{center}$\begin{array}{ccc}\Delta_2= &\begin{bmatrix} 0 & 0 & 0 & 0 \\0 & c-b & 0 & c-b\\-(c-b) & 0 & 0 & -(c-b)\\ 0 & 0 & 0 & 0 \end{bmatrix} & \begin{bmatrix} a-b & 0 & 0 & 0 \\ 0 & d-b & 0 & b-c\\ c-b & 0 & a-c & 0 \\ 0 & 0 & 0 & d-c\end{bmatrix}\\& Type (B) & \Delta_3\end{array}$\end{center}
+
+\begin{center}$\begin{array}{ccc}\Delta_3= &\begin{bmatrix} a-b & 0 & 0 & 0 \\0 & 0 & 0 & 0\\(a-b)-(a-c) & 0 & a-c & 0\\ 0 & 0 & 0 & 0 \end{bmatrix} & \begin{bmatrix} 0 & 0 & 0 & 0 \\ 0 & d-b & 0 &(d-c)-(d-b)\\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & d-c\end{bmatrix}\\& Type (C) & Type(D)\end{array}$\end{center}
+
+
+Now adding total number of multiplications required to get Matrix Z:
+\begin{center}$\begin{array}{ccc} Type & Count & Total\\ 
+\hline 
+\\ Type (A) & 2 & 2 \\ Type (B) & 1 & 1 \\Type (C) & 1 & 2 \\Type (D) & 1 & 2\\
+ \hline
+ Sum: & & 7 \end{array}$\end{center}
+
+Here we found that we were able to reduce number to multiplications from 8 to 7.
+
+Next, we find complexity of Strassen's algorithm, for an m $\times$ m matrix with k no of multiplications the complexity is $\Oh{n^{log_{m}k}}$, so for strassen's algorithm for a 3$\times$3 it is $\Oh{n^{log_{3}7}}$
+
+Now to beat strassen's algorithm for a m $\times$ m matrix one will need 
+
+\begin{center} $n^{log_{m}k}$ $\textless$ $n^{log_{2}7}$ \end{center}
+
+\begin{center} ${log_{3}k}$ $\textless$ ${log_{2}7}$\\ \end{center}
+
+\begin{center} For any algorithm to beat a Strassen's algo for  a 3 $\times$ 3 matrix we must have less than \end{center}
+
+\begin{center} k $\textless$ $3^{log_{2}7}$ \end{center}
+
+\begin{center} k $\textless$ 22 \end{center}
+
+We saw that for beating Strassen algorithm we need to have less that 22 multiplication but the current best algorithm need 23 multiplications 
+
+\section{Divide and Conquer: Polynomial Multiplication}  
+In this section we will try to reduce number of multiplications required to multiply 2 polynomials.
+\subsection{Coefficient Representation of Polynomial}
+A polynomial in variable x can be written as 
+\begin{center}$A(x)=\sum\limits_{j=0}^{n-1}a_jx^j$\end{center}
+which is equivalent to
+\begin{center}$A(x)=a_0+a_1x+a_2x^2+....+a_{n-1}x^{n-1}$\end{center}
+In this equation $a_0,a_1,a_2,...,a_{n-1}$ are the coefficients of the polynomial.
+
+We can find the degree k of a poylnomial by finding its highest nonzero coefficient $a_k$ and the degree bound of that polynomial is any integer which is greater than the degree of the polynomial.
+
+Now, we can evaluate A(x) at any point by using 
+\begin{center}$A(x)=a_0+a_1x+a_2x^2+...+a_{n-1}x^{n-1}$\end{center}
+or We can use Horner Rule by which we reduce number of multiplications required to calculate A(x) hence getting value of A(x) at a given point faster than the naive method.
+
+Equation to evaluate A(x) using Horner's Rule is
+\begin{center}$A(x)=a_0+x_0(a_1+x_0(a_2+....+x_0(a_{n-2}+x_0(a_{n-1}))...))$\end{center}
+This equation will evaluate A(x) at any point $x_0$ within $\theta(n)$ time. 
+
+
+
+\subsubsection{Addition of two polynomials}
+To add two polynomials A(x) and B(x) which are degree bound n we can add them in $\theta(n)$ of time.
+What we will do is we will take coefficient vector $a=(a_0,a_1,a_2,...,a_{n-1})$ of A(x) and $b=(b_0,b_1,b_2,...,b_{n-1})$ for B(x) and will calculate coefficent vector $c=(c_0,c_1,c_2...,c_{n-1})$ for C(x) where $C(x)=A(x)+B(x)$ and $c_j=a_j+b_j$ where j is from 0 to n-1
+
+
+\subsubsection{Multiplication of two polynomials}
+When we multiply two polynomials of degree bound n we get an another polynomial which is of degree bound 2n-1.
+
+Suppose we have 2 polynomials A(x) and B(x) where coefficient of A(x) are $a=(a_0,a_1,a_2,...,a_{n-1})$ and of B(x) is $b=(b_0,b_1,b_2,...,b_{n-1})$ we can find coefficient of C(x) where C(x)=A(x)$\cdot$B(x) by 
+
+\begin{center}$c_j=\sum\limits_{k=0}^ja_kb_{j-k}$  for  $0\leq j\leq 2n-2$ \end{center}
+And,
+\begin{center}$C(x) = \sum\limits_{j=0}^{2n-2}c_jx^j$\end{center}
+
+
+The coefficient vector c is the convolution between a and b vector and is denoted as c=a$\otimes$b and evaluation of vector c takes $\theta(n^2)$
+
+We can speed up the multiplication of two polynomials by applying Karatsuba's Algorithm by assuming n to be a power of 2.
+
+We can write polynomials A(x) and B(x) as
+
+\begin{center} $A(x)=\sum\limits_{j=0}^{n-1}a_jx^j=\sum\limits_{j=0}^{n/2-1}a_jx^j+x^{n/2}\sum\limits_{j=0}^{n/2-1}a_{n/2+j}x^j=A_1(x)+x^{n/2}A_2(x)$\end{center}
+And,
+\begin{center} $B(x)=\sum\limits_{j=0}^{n-1}a_jx^j=\sum\limits_{j=0}^{n/2-1}b_jx
+^j+x^{n/2}\sum\limits_{j=0}^{n/2-1}b_{n/2+j}x^j=B_1(x)+x^{n/2}B_2(x)$\end{center}
+
+Then we can say C(x)=A(x)B(x)
+\begin{center}$C(x)=A_1(x)B_1(x)+x^{n/2}[A_1(x)B_2(x)+A_2(x)B_1(x)]+x^nA_2(x)B_2(x)$\end{center}
+We can reduce 1 more multiplication by using
+\begin{center}$A_1(x)B_2(x)+A_2(x)B_1(x)=[A_1(x)+A_2(x)][B_1(x)+B_2(x)]-A_1(x)B_1(x)-A_2(x)B_2(x)$\end{center}
+
+From this we can see that the Karatsuba multiplication algortihm lead to the complexity $\Oh {n^{log_23}}$ = $\Oh {n^{1.59}}$ for polynomial multiplication
+
+\subsection{Point Value Representation of Polynomials}
+A point value representation of the polynomial is the set of n point value pairs represented as ${(x_0,y_0),(x_1,y_1),...,(x_{n-1},y_{n-1})}$ for a polynomial A(x) and $y_k=A(x_k)$ for $0\leq k \leq n-1$.
+
+\subsubsection{Adding two polynomials using point value representation}
+Suppose we have 2 polynomials A(x) and B(x) with a degree bound of n. Then the point value representation of the polynomials is
+
+\begin{center}$A:{(x_0,y_0^a),(x_1,y_1^a),(x_2,y_2^a),...,(x_{n-1},y_{n-1}^a)}$
+\\$B:{(x_0,y_0^b),(x_1,y_1^b),(x_2,y_2^b),...,(x_{n-1},y_{n-1}^b)}$\end{center}
+
+Now,
+
+\begin{center}$C(x)=A(x) + B(x)$\\$C:{(x_0,y_0^a+y_0^b),(x_1,y_1^a+y_1^b),...,(x_{n-1},y_{n-1}^a+y_{n-1}^b)}$\end{center}
+
+From above we can see that the polynomial addition will take $\theta(n)$ time.
+
+\subsubsection{Multiplication of two polynomials}
+For multiplication of two polynomials using point-value representation of polynomials we need to have the 2n points for a n degree bound polynomial because the degree bound of the product is 2n-1.
+
+\begin{center}$A:{(x_0,y_0^a),(x_1,y_1^a),(x_2,y_2^a),...,(x_{2n-1},y_{2n-1}^a)}$\end{center}
+
+\begin{center}$B:{(x_0,y_0^b),(x_1,y_1^b),(x_2,y_2^b),...,(x_{2n-1},y_{2n-1}^b)}$\end{center}
+
+
+
+\end{document}
